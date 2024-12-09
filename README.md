@@ -15,45 +15,41 @@
 
 <img width="1201" alt="predict" src="https://github.com/user-attachments/assets/f4001f0c-b937-4196-888e-210e50f9d738">
 
-## Environments and Requirements:
-### 1. nnUNet Configuration
-Install nnUNetv2 as below.  
-You should meet the requirements of nnUNetv2, our method does not need any additional requirements.  
-For more details, please refer to https://github.com/MIC-DKFZ/nnUNet  
-
+## Как запустить:
+### 1. nnUNet Конфигурация
+Репозиторий nnUnet: https://github.com/MIC-DKFZ/nnUNet 
 ```
 git clone https://github.com/MIC-DKFZ/nnUNet.git
 cd nnUNet
 pip install -e .
 ```
-### 2. Dataset
+### 2. Набор данных
 
-Load ToothFairy2 Dataset from https://ditto.ing.unimore.it/toothfairy2/
+Загрузка ToothFairy2 Dataset https://ditto.ing.unimore.it/toothfairy2/
 
-Unzip the dataset and put it under *nnUNet_raw* folder.
+Разархивировать набор данных и положить в *nnUNet_raw* папку.
 
-Replace *dataset.json* by *preprocess/dataset.json* .
+Заменить *dataset.json* на *preprocess/dataset.json* .
 
-### 3. Preprocessing
+### 3. Предобработка
 
-Prepare the dataset.
+Подготовка набора данных.
 
 ```
 python preprocess/preprocess.py --input_root YOUR_nnUNet_FOLDER/nnUNet_raw/Dataset112_ToothFairy2
 ```
 
-Filter out the suboptimal images and annotations (Optional, if so, modify numTraining in *dataset.json*).
+Отфильтруйте неоптимальные изображения и аннотации (необязательно, если это так, измените numTraining в *dataset.json*).
 
-Conduct automatic preprocessing using nnUNet.
+Проведите автоматическую предварительную обработку с помощью nnUNet.
 
 ```
 nnUNetv2_plan_and_preprocess -d 112 --verify_dataset_integrity
 ```
 
-### 4. Training
+### 4. Обучение
 
-Train by nnUNetv2 with 5-fold cross-validation method. 
-
+Обучение с помощью nnUNetv2 с использованием метода 5-кратной перекрестной проверки.
 Run script:
 
 ```
@@ -62,19 +58,19 @@ sh train.sh
 
 ### 5. Adaptive Structure Optimization
 
-To get the optimal filtering size, do:
+Чтобы получить оптимальный размер фильтрации, запустите:
 
 ```
 python utils/ASO.py --gt_root GROUND_TRUTH_FOLDER --pred_root EVALUATION_RESULT_FOLDER
 ```
 
-### 6. Final Model Encapsulation using Docker
+### 6. Контейнеризация модели в Docker
 
-Move the checkpoint_best.pth for each fold to *weight*.
+Переместите checkpoint_best.pth для каждой папки в *weight*.
 
-Or you can get the trained model weights from https://drive.google.com/file/d/1OXf4JAugFRThhNCdnnALLivzhRi34eGE/view?usp=sharing
+Или вы можете получить веса обученной модели из https://drive.google.com/file/d/1OXf4JAugFRThhNCdnnALLivzhRi34eGE/view?usp=sharing
 
-Build the docker based on `dockerfile`
+Создайте docker_compose на основе `dockerfile`
 
 ```
 sh build.sh

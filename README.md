@@ -13,7 +13,10 @@
 - Результаты и оптимизация
 - Контейнеризация и упаковка в Docker
 
-<img width="1201" alt="predict" src="https://github.com/user-attachments/assets/f4001f0c-b937-4196-888e-210e50f9d738">
+## Примеры предсказаний:
+![2024-12-10 14 19 37](https://github.com/user-attachments/assets/d8626953-7c0d-41a0-818f-8f94c174c02a)
+
+![2024-12-10 14 19 41](https://github.com/user-attachments/assets/4678dc36-52fa-463e-82a9-5ef47fecd798)
 
 ## Как запустить:
 ### 1. nnUNet Конфигурация

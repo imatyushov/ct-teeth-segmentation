@@ -78,7 +78,7 @@ python utils/ASO.py --gt_root GROUND_TRUTH_FOLDER --pred_root EVALUATION_RESULT_
 ```
 sh build.sh
 ```
-Save the docker images if needed.
+Сохраните docker images в случае необходимости.
 ```
 sh export.sh
 ```
